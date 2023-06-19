@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="guojianxiu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="测试覆盖率覆盖率 覆盖率是衡量测试效果的一个辅助指标 代码覆盖率 测试过程中（运行时）被执行的源代码占全部源代码的比例 代码覆盖率高不等于代码质量高   功能覆盖率 依据需求 功能用例case覆盖多少业务功能    代码覆盖率方法 语句覆盖 判定覆盖 分支覆盖  常见子类型 行覆盖率 类覆盖率 分支覆盖率 方法覆盖率 指令覆盖率 圈复杂度  作用 代码覆盖率可以作为单元测试&#x2F;自动化测试的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码覆盖率实践">
+<meta property="og:url" content="https://guojianxiu.github.io/2023/05/26/%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="caicai">
+<meta property="og:description" content="测试覆盖率覆盖率 覆盖率是衡量测试效果的一个辅助指标 代码覆盖率 测试过程中（运行时）被执行的源代码占全部源代码的比例 代码覆盖率高不等于代码质量高   功能覆盖率 依据需求 功能用例case覆盖多少业务功能    代码覆盖率方法 语句覆盖 判定覆盖 分支覆盖  常见子类型 行覆盖率 类覆盖率 分支覆盖率 方法覆盖率 指令覆盖率 圈复杂度  作用 代码覆盖率可以作为单元测试&#x2F;自动化测试的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guojianxiu.github.io/media/16850897308936.jpg">
+<meta property="og:image" content="https://guojianxiu.github.io/media/16850897600354.jpg">
+<meta property="og:image" content="https://guojianxiu.github.io/media/16850897748925.jpg">
+<meta property="article:published_time" content="2023-05-26T08:26:28.000Z">
+<meta property="article:modified_time" content="2023-06-19T09:52:34.659Z">
+<meta property="article:author" content="guojianxiu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://guojianxiu.github.io/media/16850897308936.jpg">
+  
+  
+  
+  <title>代码覆盖率实践 - caicai</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"guojianxiu.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>guojianxiu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="代码覆盖率实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-26 16:26" pubdate>
+          2023年5月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">代码覆盖率实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h1><h2 id="覆盖率"><a href="#覆盖率" class="headerlink" title="覆盖率"></a>覆盖率</h2><ul>
+<li>覆盖率是衡量测试效果的一个辅助指标</li>
+<li>代码覆盖率<ul>
+<li>测试过程中（运行时）被执行的源代码占全部源代码的比例</li>
+<li>代码覆盖率高不等于代码质量高</li>
+</ul>
+</li>
+<li>功能覆盖率<ul>
+<li>依据需求</li>
+<li>功能用例case覆盖多少业务功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码覆盖率"><a href="#代码覆盖率" class="headerlink" title="代码覆盖率"></a>代码覆盖率</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>语句覆盖</li>
+<li>判定覆盖</li>
+<li>分支覆盖</li>
+</ul>
+<h3 id="常见子类型"><a href="#常见子类型" class="headerlink" title="常见子类型"></a>常见子类型</h3><ul>
+<li>行覆盖率</li>
+<li>类覆盖率</li>
+<li>分支覆盖率</li>
+<li>方法覆盖率</li>
+<li>指令覆盖率</li>
+<li>圈复杂度</li>
+</ul>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>代码覆盖率可以作为单元测试&#x2F;自动化测试的参考指标</li>
+<li>分析未覆盖的代码，反推测试case是否充分（需求设计问题？测试用例设计问题？）是否需要设计case进行覆盖</li>
+<li>检测程序的废代码，代码是否冗余</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>代码覆盖率高不等于代码质量高</li>
+<li>无法确定是否测试所有需求功能的组合</li>
+<li>无法了解覆盖逻辑的程度和深度</li>
+</ul>
+<h2 id="常见工具类型"><a href="#常见工具类型" class="headerlink" title="常见工具类型"></a>常见工具类型</h2><ul>
+<li>代码检测 </li>
+<li>运行时检测</li>
+<li>中间代码检测</li>
+</ul>
+<h2 id="代码覆盖率工具"><a href="#代码覆盖率工具" class="headerlink" title="代码覆盖率工具"></a>代码覆盖率工具</h2><table>
+<thead>
+<tr>
+<th align="left">语言</th>
+<th align="left">工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">JAVA</td>
+<td align="left">Jacoco</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Emma</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">cobertura</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Python</td>
+<td align="left">Coverage.py</td>
+</tr>
+</tbody></table>
+<p><img src="/media/16850897308936.jpg" srcset="/img/loading.gif" lazyload alt="name1"></p>
+<h1 id="Jacoco"><a href="#Jacoco" class="headerlink" title="Jacoco"></a>Jacoco</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Jacoco 是一个开源的覆盖率工具，针对的语言为java。它可以嵌入到 Ant 、Maven 中，也提供了 EclEmma Eclipse 插件。Jacoco 主要通过代码注入（即 Java Agent）方式来实现覆盖率的功能。很多第三方的工具提供了对 Jacoco 的集成，如：Sonar、Jenkins、IDEA</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jacoco.org/jacoco/">https://www.jacoco.org/jacoco/</a></li>
+</ul>
+<h2 id="插桩方式"><a href="#插桩方式" class="headerlink" title="插桩方式"></a>插桩方式</h2><ul>
+<li>原理：注入</li>
+<li>源代码（Source Code）注入和字节码（Byte Code）注入两大类</li>
+<li>字节码注入又可以分为两大模式：On-The-Fly 注入模式和 Offline 注入模式。</li>
+<li>实现：ASM 是一个 Java 字节码操纵框架，能被用来动态生成类或者增强既有类的功能，可以直接产生 class 文件，也可以在类被加载入 JVM 之前动态改变类行为。</li>
+<li>on-the-fly 模式是JVM通过 -javaagent参数指定jar文件启动代理程序，代理程序在ClassLoader装载一个class前判断是否修改class文件，并将探针插入class文件，探针不改变原有方法的行为，只是记录是否已经执行。</li>
+<li>offline 模式就是在测试之前先对文件进行插桩，生成插过桩的class或jar包，测试插过桩的class和jar包，生成覆盖率信息到文件，最后统一处理，生成报告。</li>
+<li>Offline模式适用于以下场景：<ul>
+<li>运行环境不支持java agent</li>
+<li>部署环境不允许设置JVM参数</li>
+<li>字节码需要被转换成其他虚拟机字节码，如Android Dalvik VM</li>
+<li>动态修改字节码过程中和其他agent冲突</li>
+<li>无法自定义用户加载类</li>
+</ul>
+</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="/media/16850897600354.jpg" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>对Java字节码进行插桩，有on-the-fly和offline两种方式。</li>
+<li>执行测试用例，收集程序执行轨迹信息，支持通过dump将操作记录从服务端传输到本地。</li>
+<li>数据处理器结合程序执行轨迹信息和代码结构信息分析生成代码覆盖率报告。</li>
+<li>结合源码和编译后的文件，可以将代码覆盖率报告图形化展示出来，如html，xml等文件格式。</li>
+</ul>
+<h1 id="Jacoco-on-the-fly模式插桩实践"><a href="#Jacoco-on-the-fly模式插桩实践" class="headerlink" title="Jacoco on-the-fly模式插桩实践"></a>Jacoco on-the-fly模式插桩实践</h1><ul>
+<li>以SpringBoot项目为例</li>
+</ul>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p><code>java -javaagent:/data/webapp/jacoco/jacocoagent.jar=includes=*,output=tcpserver,append=false,address=localhost,port=6200 -jar xxxxxxxxxx.jar </code><br>参数说明：</p>
+<ul>
+<li>-javaagent:[yourpath&#x2F;]jacocoagent.jar&#x3D;[option1]&#x3D;[value1],[option2]&#x3D;[value2]</li>
+<li>yourpath为jacoco下载解压的地址</li>
+<li>includes标识对要插桩的包进行过滤，*标识所有class</li>
+<li>port 唯一端口</li>
+<li>output 以tcpserver方式启动jar包并插桩；可选参数有file、tcpserver、tcpclient</li>
+<li>address 对外开放的地址</li>
+<li>xxxx.jar 被测服务</li>
+<li>append False时若文件已存在则替换文件；True时附加数据到现有文件</li>
+</ul>
+<h2 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h2><p>可以执行测试代码（接口自动化、UI自动化、单元测试）</p>
+<h2 id="生成报告"><a href="#生成报告" class="headerlink" title="生成报告"></a>生成报告</h2><h3 id="获取exec文件"><a href="#获取exec文件" class="headerlink" title="获取exec文件"></a>获取exec文件</h3><p><code>java -jar jacococli.jar dump --address 0.0.0.0 --port 6305 --destfile jacoco-demo.exec </code></p>
+<ul>
+<li>adredess port 要与启动时的参数一致</li>
+<li>destfile 输出文件路径</li>
+</ul>
+<h3 id="生成报告-1"><a href="#生成报告-1" class="headerlink" title="生成报告"></a>生成报告</h3><p><code>java -jar jacococli.jar report ./jacoco-demo.exec --classfiles /application/BOOT-INF/classes  --sourcefiles /Users/gjx/IdeaProjects/demo/src/main/java --html report</code><br><code>java -jar jacococli.jar report jacoco-demo.exec --classfiles /application/BOOT-INF/classes --html report</code></p>
+<ul>
+<li>–html 在当前目录下生成html格式报告</li>
+<li>classfiles、sourcefiles 可以有多个<br><img src="/media/16850897748925.jpg" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<p>参考资料</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363864068">https://zhuanlan.zhihu.com/p/363864068</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyitan/p/11542076.html">https://www.cnblogs.com/liuyitan/p/11542076.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyitan/p/15716027.html">https://www.cnblogs.com/liuyitan/p/15716027.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7c9a4ca864da">https://www.jianshu.com/p/7c9a4ca864da</a></li>
+</ul>
+<h2 id="落地"><a href="#落地" class="headerlink" title="落地"></a>落地</h2><ul>
+<li>修改被测服务dockerfile，引入jacoco包并更改jar包启动方式</li>
+<li>cicd执行镜像，部署镜像</li>
+<li>运行自动化测试</li>
+<li>执行生成jacoo覆盖率报告命令，依据报告分析测试结果，补充自动化case以及去除冗余代码</li>
+</ul>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><ul>
+<li>可以考虑使用diff实现精准测试，完成每次版本的代码差异，针对性测试，保证变更代码进行测试覆盖</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码覆盖率实践</div>
+      <div>https://guojianxiu.github.io/2023/05/26/代码覆盖率实践/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>guojianxiu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月26日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/19/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/26/allure%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="allure使用教程">
+                        <span class="hidden-mobile">allure使用教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="guojianxiu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="allure使用教程安装 前置条件  安装jdk  在下载地址选择合适的版本进行下载  curl -O https:&#x2F;&#x2F;repo.maven.apache.org&#x2F;maven2&#x2F;io&#x2F;qameta&#x2F;allure&#x2F;allure-commandline&#x2F;2.18.0&#x2F;allure-commandline-2.18.0.zip  解压到指定目录  unzip -n .&#x2F;library&#x2F;allure-2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="allure使用教程">
+<meta property="og:url" content="https://guojianxiu.github.io/2023/05/26/allure%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="caicai">
+<meta property="og:description" content="allure使用教程安装 前置条件  安装jdk  在下载地址选择合适的版本进行下载  curl -O https:&#x2F;&#x2F;repo.maven.apache.org&#x2F;maven2&#x2F;io&#x2F;qameta&#x2F;allure&#x2F;allure-commandline&#x2F;2.18.0&#x2F;allure-commandline-2.18.0.zip  解压到指定目录  unzip -n .&#x2F;library&#x2F;allure-2.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guojianxiu.github.io/media/16520948304645/16520965619552.jpg">
+<meta property="article:published_time" content="2023-05-26T08:20:03.000Z">
+<meta property="article:modified_time" content="2023-06-19T09:52:34.655Z">
+<meta property="article:author" content="guojianxiu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://guojianxiu.github.io/media/16520948304645/16520965619552.jpg">
+  
+  
+  
+  <title>allure使用教程 - caicai</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"guojianxiu.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>guojianxiu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="allure使用教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-26 16:20" pubdate>
+          2023年5月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">allure使用教程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="allure使用教程"><a href="#allure使用教程" class="headerlink" title="allure使用教程"></a>allure使用教程</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>前置条件</p>
+</li>
+<li><p>安装jdk</p>
+</li>
+<li><p>在<a target="_blank" rel="noopener" href="https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/" title="下载地址">下载地址</a>选择合适的版本进行下载</p>
+</li>
+<li><p><code>curl -O https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.18.0/allure-commandline-2.18.0.zip</code></p>
+</li>
+<li><p>解压到指定目录</p>
+</li>
+<li><p><code>unzip -n ./library/allure-2.18.0.zip -d /usr/local/bin/</code></p>
+</li>
+<li><p>增加系统变量</p>
+</li>
+<li><p><code>ln -s /usr/local/bin/allure-2.18.0/bin/allure /usr/bin/allure</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">vi ~/.zshrc <br><span class="hljs-comment"># 也有可能是bash</span><br><span class="hljs-comment"># 在文件中增加以下内容</span><br><span class="hljs-built_in">export</span> PATH=/Users/gjx/Tools/allure-2.14.0/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment"># 保存文件</span><br><span class="hljs-comment"># 重新加载文件使得配置生效</span><br><span class="hljs-built_in">source</span> ~/.zshrc<br></code></pre></td></tr></table></figure>
+<ul>
+<li>验证安装<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">allure <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="生成报告"><a href="#生成报告" class="headerlink" title="生成报告"></a>生成报告</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 方式一</span><br>allure serve <span class="hljs-regexp">/home/</span>path<span class="hljs-regexp">/to/</span>project<span class="hljs-regexp">/target/</span>surefire-reports/<br><span class="hljs-comment"># 方式二</span><br>allure generate <span class="hljs-regexp">/home/</span>path<span class="hljs-regexp">/to/</span>project<span class="hljs-regexp">/target/</span>report_result<span class="hljs-regexp">/ -o /</span>home<span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/project/</span>target<span class="hljs-regexp">/report_result/</span>html<br></code></pre></td></tr></table></figure>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>在生成测试报告之前，在allure-results文件夹中创建environment.properties (or environment.xml) 文件。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><span class="hljs-comment"># environment.properties</span><br>Browser=Chrome<br>Browser.Version=63.0<br>Stand=Production<br><br><span class="hljs-comment"># environment.xml</span><br><span class="hljs-variable">&lt;environment&gt;</span><br>    <span class="hljs-variable">&lt;parameter&gt;</span><br>        <span class="hljs-variable">&lt;key&gt;</span>Browser<span class="hljs-variable">&lt;/key&gt;</span><br>        <span class="hljs-variable">&lt;value&gt;</span>Chrome<span class="hljs-variable">&lt;/value&gt;</span><br>    <span class="hljs-variable">&lt;/parameter&gt;</span><br>    <span class="hljs-variable">&lt;parameter&gt;</span><br>        <span class="hljs-variable">&lt;key&gt;</span>Browser.Version<span class="hljs-variable">&lt;/key&gt;</span><br>        <span class="hljs-variable">&lt;value&gt;</span>63.0<span class="hljs-variable">&lt;/value&gt;</span><br>    <span class="hljs-variable">&lt;/parameter&gt;</span><br>    <span class="hljs-variable">&lt;parameter&gt;</span><br>        <span class="hljs-variable">&lt;key&gt;</span>Stand<span class="hljs-variable">&lt;/key&gt;</span><br>        <span class="hljs-variable">&lt;value&gt;</span>Production<span class="hljs-variable">&lt;/value&gt;</span><br>    <span class="hljs-variable">&lt;/parameter&gt;</span><br><span class="hljs-variable">&lt;/environment&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="结果分类"><a href="#结果分类" class="headerlink" title="结果分类"></a>结果分类</h2><ul>
+<li>默认</li>
+<li>产品缺陷：assert error</li>
+<li>测试缺陷：不是assert error的error</li>
+<li>自定义</li>
+<li>在生成测试报告之前，在allure-results文件夹中创建categories.json文件。<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> categories.json<br>[<br>  &#123;<br>    <span class="hljs-regexp">//</span>分类名称，必须<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Ignored tests&quot;</span>, <br>    <span class="hljs-string">&quot;matchedStatuses&quot;</span>: [<span class="hljs-string">&quot;skipped&quot;</span>] <br>  &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Infrastructure problems&quot;</span>,<br>    <span class="hljs-regexp">//</span>分类状态，可选<br>    <span class="hljs-string">&quot;matchedStatuses&quot;</span>: [<span class="hljs-string">&quot;broken&quot;</span>, <span class="hljs-string">&quot;failed&quot;</span>],<br>    <span class="hljs-regexp">//</span>正则匹配错误信息，可选<br>    <span class="hljs-string">&quot;messageRegex&quot;</span>: <span class="hljs-string">&quot;.*bye-bye.*&quot;</span> <br>  &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Outdated tests&quot;</span>,<br>    <span class="hljs-string">&quot;matchedStatuses&quot;</span>: [<span class="hljs-string">&quot;broken&quot;</span>],<br>    <span class="hljs-regexp">//</span>正则匹配堆栈跟踪，可选<br>    <span class="hljs-string">&quot;traceRegex&quot;</span>: <span class="hljs-string">&quot;.*FileNotFoundException.*&quot;</span> <br>  &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Product defects&quot;</span>,<br>    <span class="hljs-string">&quot;matchedStatuses&quot;</span>: [<span class="hljs-string">&quot;failed&quot;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Test defects&quot;</span>,<br>    <span class="hljs-string">&quot;matchedStatuses&quot;</span>: [<span class="hljs-string">&quot;broken&quot;</span>]<br>  &#125;<br>]<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><ul>
+<li>支持语言、框架</li>
+<li>Java<ul>
+<li>JUnit 4</li>
+<li>JUnit 5</li>
+<li>TestNG</li>
+<li>Cucumber JVM</li>
+<li>Selenide</li>
+</ul>
+</li>
+<li>Python<ul>
+<li>Pytest</li>
+<li>Behave</li>
+<li>Nose</li>
+</ul>
+</li>
+<li>JavaScript</li>
+<li>Jasmine</li>
+<li>Cucumber JS</li>
+<li>Karma</li>
+<li>Mocha</li>
+<li>Ruby</li>
+<li>Cucumber</li>
+<li>RSpec</li>
+<li>Groovy</li>
+<li>Spock</li>
+<li>PHP</li>
+<li>PHPUnit</li>
+<li>ALLURECodeception</li>
+<li>.Net</li>
+<li>SpecFlow</li>
+<li>NUnit 3</li>
+<li>NUnit 2</li>
+<li>MSTest</li>
+<li>Scala</li>
+<li>ScalaTest</li>
+<li>Specs</li>
+</ul>
+<h2 id="Pytest"><a href="#Pytest" class="headerlink" title="Pytest"></a>Pytest</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 安装</span><br>pip install allure-pytest<br><span class="hljs-comment"># 生成报告</span><br>pytest --alluredir=<span class="hljs-regexp">/tmp/my</span>_allure_results<br></code></pre></td></tr></table></figure>
+
+<h3 id="Xfail"><a href="#Xfail" class="headerlink" title="Xfail"></a>Xfail</h3><p>@pytest.mark.xfail(condition&#x3D;<strong>lambda</strong>: True, reason&#x3D;’this test is expecting failure’)</p>
+<h3 id="Conditional-mark"><a href="#Conditional-mark" class="headerlink" title="Conditional mark"></a>Conditional mark</h3><p>@pytest.mark.skipif(‘2 + 2 !&#x3D; 5’, reason&#x3D;’This test is skipped by a triggered condition in @pytest.mark.skipif’)</p>
+<h3 id="Fixtures-and-Finalizers"><a href="#Fixtures-and-Finalizers" class="headerlink" title="Fixtures and Finalizers"></a>Fixtures and Finalizers</h3><p>@pytest.fixture(scope&#x3D;’session’)</p>
+<h3 id="Parametrization"><a href="#Parametrization" class="headerlink" title="Parametrization"></a>Parametrization</h3><p>@pytest.mark.parametrize(‘param1’, [True, False], ids&#x3D;[‘id explaining value 1’, ‘id explaining value 2’])</p>
+<h3 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h3><p>@allure.step<br>@allure.step(‘step in conftest.py’)</p>
+<h3 id="Attachments"><a href="#Attachments" class="headerlink" title="Attachments"></a>Attachments</h3><p>allure.attach(‘A text attacment in module scope fixture’, ‘blah blah blah’, allure.attachment_type.TEXT)<br>allure.attach.file(‘.&#x2F;data&#x2F;totally_open_source_kitten.png’, attachment_type&#x3D;allure.attachment_type.PNG)   allure.attach(‘ a page ‘, ‘Attach with HTML type’, allure.attachment_type.HTML)</p>
+<h3 id="Descriptions"><a href="#Descriptions" class="headerlink" title="Descriptions"></a>Descriptions</h3><p>@allure.description_html(“”” Test with some complicated html description         Firstname     Lastname     Age           William     Smith     50           Vasya     Jackson     94     “””)<br>@allure.description(“”” Multiline test description. That comes from the allure.description decorator.  Nothing special about it. “””)</p>
+<h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>@allure.title(“This test has a custom title”)</p>
+<h3 id="links"><a href="#links" class="headerlink" title="links"></a>links</h3><p>@allure.link(‘<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=4YYzUTYZRMU" title="https://www.youtube.com/watch?v=4YYzUTYZRMU">https://www.youtube.com/watch?v=4YYzUTYZRMU</a>‘)<br>@allure.link(‘<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Su5p2TqZxKU" title="https://www.youtube.com/watch?v=Su5p2TqZxKU">https://www.youtube.com/watch?v=Su5p2TqZxKU</a>‘, name&#x3D;’Click me’)<br>@allure.issue(‘140’, ‘Pytest-flaky test retries shows like test steps’)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本"># 使用issue时需要生成报告时传入参数<br>pytest directory_with_tests/ --alluredir=/tmp/my_allure_report \<br> --allure-link-pattern=issue:http://www.mytesttracker.com/issue/&#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>@allure.testcase(TEST_CASE_LINK, ‘Test case title’)</p>
+<h3 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h3><p>@allure.feature(‘feature_2’)</p>
+<h3 id="story"><a href="#story" class="headerlink" title="story"></a>story</h3><p>@allure.story(‘story_1’)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本"># 可用参数<br>--allure-epics<br>--allure-features<br>--allure-stories<br><br># 指定运行哪些story features<br>pytest tests.py --allure-stories story_1,story_2<br>pytest tests.py --allure-features feature2 --allure-stories story2<br></code></pre></td></tr></table></figure>
+
+<h3 id="Severity-markers"><a href="#Severity-markers" class="headerlink" title="Severity markers"></a>Severity markers</h3><p>@allure.severity(allure.severity_level.TRIVIAL)<br>@allure.severity(allure.severity_level.NORMAL)<br>@allure.severity(allure.severity_level.CRITICAL)<br><img src="/media/16520948304645/16520965619552.jpg" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pytest tests.py --allure-severities normal,critical<br></code></pre></td></tr></table></figure>
+
+<h2 id="Behave"><a href="#Behave" class="headerlink" title="Behave"></a>Behave</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">#安装<br>pip install allure-behave<br># 生成报告<br>behave -f allure_behave.formatter:AllureFormatter -o %allure_result_folder% ./features<br></code></pre></td></tr></table></figure>
+
+<h3 id="Severity"><a href="#Severity" class="headerlink" title="Severity"></a>Severity</h3><h3 id="Steps-and-Scenarious-status"><a href="#Steps-and-Scenarious-status" class="headerlink" title="Steps and Scenarious status"></a>Steps and Scenarious status</h3><h3 id="Step-Data"><a href="#Step-Data" class="headerlink" title="Step Data"></a>Step Data</h3><h2 id="Nose"><a href="#Nose" class="headerlink" title="Nose"></a>Nose</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">nosetests --with-allure --logdir=/path/to/put/results<br>nosetests --with-allure --logdir=/path/to/put/results --not-clear-logdir<br></code></pre></td></tr></table></figure>
+
+<h3 id="Attachment"><a href="#Attachment" class="headerlink" title="Attachment"></a>Attachment</h3><p>nose.allure.attach(‘my attach’, ‘Hello, World’)</p>
+<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step"></a>Step</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">import nose<br><br>def test_foo():<br>    with nose.allure.step(&#x27;step one&#x27;):<br>        # do stuff<br><br>    with nose.allure.step(&#x27;step two&#x27;):<br>        # do more stuff<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">import nose<br><br>@nose.allure.step<br>def make_test_data_foo():<br>    # do stuff<br><br>def test_foo():<br>    assert make_some_data_foo() is not None<br><br>@nose.allure.step(&#x27;make_some_data_foo&#x27;)<br>def make_some_data_bar():<br>    # do another stuff<br><br>def test_bar():<br>    assert make_some_data_bar() is not None<br></code></pre></td></tr></table></figure>
+
+<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">import nose<br><br>def test_dummy():<br>    nose.allure.environment(report=&#x27;Allure report&#x27;, browser=u&#x27;Firefox&#x27;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Severity-1"><a href="#Severity-1" class="headerlink" title="Severity"></a>Severity</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">import nose<br><br>class TestBar(object):<br><br>    @nose.allure.severity(nose.allure.severity_level.CRITICAL)<br>    def test_bar(self):<br>        pass<br><br># custom severity<br>@nose.allure.severity(&quot;hard&quot;)<br>def test_bar(self):<br>    pass<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">nosetests my_tests/ --with-allure --logdir=tmp --severity=&quot;critical, hard&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h3><p>@nose.allure.issue(‘<a target="_blank" rel="noopener" href="http://jira.lan/browse/ISSUE-1" title="http://jira.lan/browse/ISSUE-1">http://jira.lan/browse/ISSUE-1</a>‘)</p>
+<h3 id="Features-amp-Stories"><a href="#Features-amp-Stories" class="headerlink" title="Features &amp; Stories"></a>Features &amp; Stories</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">import nose<br><br>@nose.allure.feature(&#x27;Feature1&#x27;)<br>@nose.allure.story(&#x27;Story1&#x27;)<br>def test_minor():<br>    assert False<br><br>class TestBar(object):<br><br>    @nose.allure.feature(&#x27;Feature2&#x27;)<br>    @nose.allure.story(&#x27;Story1&#x27;)<br>    def test_bar(self):<br>        pass<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">nosetests my_tests/ --with-allure --logdir=tmp --feature=&quot;Feature1, Feature2&quot;<br>nosetests my_tests/ --with-allure --logdir=tmp --feature=&quot;Feature1, Feature2&quot; --story=&quot;Story1, Story2&quot;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>allure使用教程</div>
+      <div>https://guojianxiu.github.io/2023/05/26/allure使用教程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>guojianxiu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月26日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/26/%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E5%AE%9E%E8%B7%B5/" title="代码覆盖率实践">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">代码覆盖率实践</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
